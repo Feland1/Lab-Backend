@@ -1,4 +1,4 @@
-package culturoteca.repository.impl;
+package culturemedia.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,7 @@ public class ViewsRepositoryImpl implements ViewsRepository {
     }
 
     @Override
-    public View save(View view) {
+    public void add(View view) {
         this.views.add( view );
-        return view;
     }
 }
