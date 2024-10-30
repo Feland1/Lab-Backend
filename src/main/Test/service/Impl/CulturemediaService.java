@@ -1,5 +1,6 @@
 package service.Impl;
 
+import culturemedia.exception.DuracionNotValidException;
 import culturemedia.exception.VideoNotFoundException;
 import culturemedia.impl.CulturemediaServiceImpl;
 import culturemedia.model.Video;
@@ -28,7 +29,7 @@ class CulturemediaServiceImplTest {
         }
 
         void saveVideos(){
-        List<Video> mockVideos = List.of(
+        List<Video>Videos = List.of(
                 new Video("01", "Título 1", "----", 4.5),
                 new Video("02", "Título 2", "----", 5.5),
                 new Video("03", "Título 3", "----", 4.4),
@@ -37,7 +38,7 @@ class CulturemediaServiceImplTest {
                 new Video("06", "Clic 6", "----", 5.1)
         );
 
-        for (Video video : mockVideos) {
+        for (Video video :Videos) {
             culturemediaService.save(video);
         }
     }
@@ -75,7 +76,7 @@ class CulturemediaServiceImplTest {
     }
 
     @Test
-    void when_FindByDuration_does_not_find_any_video_an_VideoNotFoundException_should_be_thrown_successfully() {
-        assertThrows(VideoNotFoundException.class, () -> culturemediaService.find( 4.5, 5.5 ));
+    void when_FindByDuration_does_not_find_any_video_an_VideoNotFoundException_should_be_thrown_successfully() throws  DuracionNotValidException {
+        assertThrows(DuracionNotValidException.class, () -> culturemediaService.find( 4.5, 5.5 ));
     }
 }

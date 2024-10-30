@@ -1,5 +1,6 @@
 package culturemedia.impl;
 
+import culturemedia.exception.DuracionNotValidException;
 import culturemedia.exception.VideoNotFoundException;
 import culturemedia.model.Video;
 import culturemedia.model.View;
@@ -50,10 +51,10 @@ public class CulturemediaServiceImpl implements CulturemediaService {
     }
 
     @Override
-    public List<Video> find(Double fromDuration, Double toDuration) throws VideoNotFoundException {
+    public List<Video> find(Double fromDuration, Double toDuration) throws DuracionNotValidException {
         List<Video> videos = videoRepository.find( fromDuration, toDuration );
         if (videos.isEmpty()) {
-            throw new VideoNotFoundException("No videos found.");
+            throw new DuracionNotValidException("No videos found.");
         }
         return videos;
     }
